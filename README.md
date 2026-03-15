@@ -15,6 +15,8 @@ Can handle any text file
 
 
 ###How to Use
+
+```python
 from tokenizer import Tokenizer
 
 with open("the-verdict.txt", "r", encoding="utf-8") as f:
