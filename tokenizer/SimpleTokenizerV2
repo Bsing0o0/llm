@@ -1,0 +1,71 @@
+
+#Special Context Characters
+
+import re
+
+
+#Read the Text
+
+text= open("C:/Users/balka/OneDrive/Documents/Personal Projects/llm_tokenizer/data/the-verdict.txt", "r", encoding="utf-8").read()
+
+#Build Tokens
+def preprocess(text):
+    Process = re.split(r'([,.:;?_!()"\s])', text)
+    Process = [item.strip() for item in Process if item.strip()]
+    return Process
+
+tokens = preprocess(text)
+
+tokens_s_set = set(tokens)
+tokens_s_set = sorted(tokens_s_set)
+
+#Building Vocabulary
+vocab = {token: idx for idx, token in enumerate(tokens_s_set)}
+#Special context characters
+for special in ["[UNK]", "[EOS]"]:
+    if special not in vocab:
+        vocab[special] = len(vocab)
+
+class SimpleTokenizerV2:
+    def __init__(self, vocab):
+        self.str_to_int = vocab
+        self.int_to_str = {idx: token for token, idx in vocab.items()}
+
+    def encode(self, text, add_eos = True):
+        tokens = preprocess(text)
+        tokens = [t if t in self.str_to_int else "[UNK]" for t in tokens]
+        ids = [self.str_to_int[t] for t in tokens]
+
+         # Append EOS at the end if needed
+        if add_eos:
+            ids.append(self.str_to_int["[EOS]"])
+
+
+        return ids
+
+
+    def decode(self, ids):
+        tokens = [self.int_to_str[i] for i in ids]
+        text = " ".join(tokens)
+        text = re.sub(r'\s([,.:;?_!()"])\s?', r'\1', text)
+        return text
+
+#Testing the Tokenizer
+tokenizer = SimpleTokenizerV2(vocab)
+encoded = tokenizer.encode(text)
+print (encoded[:100])
+decoded = tokenizer.decode(encoded)
+print (decoded[:500])
+
+#Tresting with new text
+new_text1 = "This is a test of the tokenizer with some new words."
+new_text2 = "Will it handle punctuation correctly? Let's see!"
+new_text = new_text1 + " " + new_text2
+
+encoded_ids = tokenizer.encode(new_text)
+decoded_text = tokenizer.decode(encoded_ids)
+
+# Print results
+print("Original Text: ", new_text)
+print("Encoded IDs: ", encoded_ids)
+print("Decoded Text: ", decoded_text)
