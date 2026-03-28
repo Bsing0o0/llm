@@ -57,7 +57,7 @@ print (encoded[:100])
 decoded = tokenizer.decode(encoded)
 print (decoded[:500])
 
-#Tresting with new text
+#Testing with new text
 new_text1 = "This is a test of the tokenizer with some new words."
 new_text2 = "Will it handle punctuation correctly? Let's see!"
 new_text = new_text1 + " " + new_text2
