@@ -4,8 +4,8 @@ from input_target import dataloaderv1  #  DataLoader function
 
 
 
-# Parameters
-vocab_size = 50356       # size of embedding matrix
+# Parameters according to CHTGPT - 2 model
+vocab_size = 50356       # size of embedding matrix 
 embedding_dim = 300      # dimension of each token embedding
 context_size = 4         # number of tokens per input sequence
 batch_size = 8           # mini-batch size
