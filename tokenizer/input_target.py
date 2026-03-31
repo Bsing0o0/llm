@@ -41,21 +41,21 @@ def dataloaderv1( raw_text, batch_size = 4, context_size = 256, stride = 128, sh
 
 
 #Testing the DataLaoder
-raw_text = "Testing the Dataloader and dataset created using this text that tokenize using tiktoken BPE tokenizer. This is a simple test to see if the dataloader and dataset are working correctly."
+#raw_text = "Testing the Dataloader and dataset created using this text that tokenize using tiktoken BPE tokenizer. This is a simple test to see if the dataloader and dataset are working correctly."
 
-loader = dataloaderv1(raw_text, batch_size = 1, context_size = 4, stride = 1)
+#loader = dataloaderv1(raw_text, batch_size = 1, context_size = 4, stride = 1)
 
-for iteration_idx, (input, output) in enumerate(loader):
-    print(f"batch {iteration_idx}:")
-    print("Input IDs:", input)
-    print("Output IDs:", output)
+#for iteration_idx, (input, output) in enumerate(loader):
+    #print(f"batch {iteration_idx}:")
+    #print("Input IDs:", input)
+    #print("Output IDs:", output)
     
 #testing with new text
-with open("C:/Users/balka/OneDrive/Documents/Personal Projects/llm_tokenizer/data/the-verdict.txt", "r", encoding="utf-8") as f:
-    new_text = f.read()
-new_loader = dataloaderv1(new_text)
+#with open("C:/Users/balka/OneDrive/Documents/Personal Projects/llm_tokenizer/data/the-verdict.txt", "r", encoding="utf-8") as f:
+#    new_text = f.read()
+#new_loader = dataloaderv1(new_text)
 
-for iteration_idx2, (input2, output2) in enumerate(new_loader):
-    print(f"batch {iteration_idx2}:")
-    print("Input IDs:", input2)
-    print("Output IDs:", output2)
+#for iteration_idx2, (input2, output2) in enumerate(new_loader):
+#    print(f"batch {iteration_idx2}:")
+#    print("Input IDs:", input2)
+#    print("Output IDs:", output2)
